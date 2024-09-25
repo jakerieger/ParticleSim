@@ -1,0 +1,3 @@
+[submodule "OpenGLTK"]
+	path = OpenGLTK
+	url = https://github.com/jakerieger/OpenGLTK.git

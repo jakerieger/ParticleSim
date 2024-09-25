@@ -1,6 +1,32 @@
 cmake_minimum_required(VERSION 3.29)
 project(ParticleSim)
 
-set(CMAKE_CXX_STANDARD 20)
+add_subdirectory(OpenGLTK)
 
-add_executable(ParticleSim main.cpp)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLTK/ThirdParty
+        ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLTK/Source
+        ${CMAKE_CURRENT_SOURCE_DIR}/Source
+)
+
+set(SOURCES
+        Source/main.cpp
+)
+
+add_executable(ParticleSim
+        ${THIRD_PARTY_SRCS}
+        ${SOURCES}
+)
+
+find_package(glfw3 CONFIG REQUIRED)
+find_package(glm CONFIG REQUIRED)
+
+target_link_libraries(ParticleSim PRIVATE
+        glfw
+        glm::glm-header-only
+        OpenGLTK
+)
