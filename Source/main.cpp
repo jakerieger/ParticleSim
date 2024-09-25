@@ -12,6 +12,7 @@ static constexpr i32 kWindowWidth = 800;
 static constexpr i32 kWindowHeight = 600;
 
 GLFWwindow* gWindow = None;
+Unique<Clock> gClock;
 
 void Update(f32 dT);
 void Render();
@@ -38,21 +39,24 @@ int main() {
     }
 
     glViewport(0, 0, kWindowWidth, kWindowHeight);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.f, 0.f, 0.f, 1.f);
 
-    f32 dT = 1.0f / 60.0f;
-
+    gClock = std::make_unique<Clock>();
+    gClock->Start();
     while (!glfwWindowShouldClose(gWindow)) {
+        gClock->Tick();
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        Update(dT);
-
+        Update(gClock->GetDeltaTime());
         Render();
 
         glfwSwapBuffers(gWindow);
+        gClock->Update();
     }
+    gClock->Stop();
 
+    gClock.reset();
     glfwDestroyWindow(gWindow);
     glfwTerminate();
 
@@ -60,7 +64,6 @@ int main() {
 }
 
 void Update(f32 dT) {
-
 }
 
 void Render() {}
