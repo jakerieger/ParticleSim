@@ -30,3 +30,7 @@ target_link_libraries(ParticleSim PRIVATE
         glm::glm-header-only
         OpenGLTK
 )
+
+add_custom_command(TARGET ParticleSim PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/Data ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Data)
