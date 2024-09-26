@@ -8,7 +8,7 @@
 #include "OpenGLTK.h"
 #include "Primitives.h"
 
-#include <glm/ext/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace GLTK;
 
