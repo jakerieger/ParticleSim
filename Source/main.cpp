@@ -3,8 +3,9 @@
 //
 
 #include "Types.h"
+
+#define GLTK_INCLUDE_GLFW
 #include "OpenGLTK.h"
-#include "Glfw/GlfwApp.h"
 
 class ParticleSim final : public GLTK::IGlfwApp {
 public:
@@ -19,7 +20,11 @@ public:
 
     void DestroyGLResources() override {}
 
-    void Update(f32 dT) override {
+    void Update() override {
+        // `mClock` is a member of IGlfwApp and can be used to get various time metrics
+        // of the running app.
+        const auto dT = mClock->GetDeltaTime();
+
         mCamera->Update();
     }
 
