@@ -50,7 +50,7 @@ public:
         mParticleShader->Bind();
         mParticleShader->SetInt("uSprite", 0);
         auto model     = glm::mat4(1.0f);
-        model          = glm::scale(model, glm::vec3(10.f, 10.f, 10.f));
+        model          = glm::scale(model, glm::vec3(10.f, 10.f, 1.f));
         const auto mvp = mCamera->GetViewProjection() * model;
         mParticleShader->SetMat4("uMVP", mvp);
 
@@ -72,7 +72,7 @@ private:
 };
 
 int main() {
-    ParticleSim app("ParticleSim", 800, 600);
+    ParticleSim app("ParticleSim", 800, 800);
     app.Run();
     return 0;
 }

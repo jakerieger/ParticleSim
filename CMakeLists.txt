@@ -9,7 +9,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLTK/ThirdParty
-        ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLTK/Source
+        ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLTK/Include
         ${CMAKE_CURRENT_SOURCE_DIR}/Source
 )
 
